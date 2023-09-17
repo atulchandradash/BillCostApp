@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+* {
+    font-family: "Righteous", cursive;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: white !important;
+    background-color: #69b190 !important;
+}
+
+.nav-link {
+    color: black !important;
+}
