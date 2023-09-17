@@ -57,4 +57,11 @@ Route::group(['middleware' => 'UserAuth'], function () {
     Route::post('/addCategoriePost', [HomeController::class, 'addCategoriePost'])->name('addCategoriePost');
     Route::delete('/addCategories/{id}', [HomeController::class, 'deleteCategories'])->name('deleteCategories');
     // ---------
+
+
+    //Logout
+
+    Route::post('/logout', [UserAuthController::class, 'logout'])->name('logout');
+
+    // ---
 });

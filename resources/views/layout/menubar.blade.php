@@ -10,7 +10,7 @@
                         <li><a class="dropdown-item" href="{{route('addcCategories')}}">Add Categories</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">
-                            <form action="/logout" method="POST">
+                            <form action="{{route('logout')}}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-light">Logout <i class="bi bi-box-arrow-left"></i></button>
                             </form>    
