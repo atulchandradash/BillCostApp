@@ -88,7 +88,7 @@ class HomeController extends Controller
 
         $getCategories = Categorie::where('userid', $user->id)->get();
 
-        return view('addcCategories', compact('user', 'now', 'getTodayCost', 'getCategories'));
+        return view('addcCategories', compact('user', 'getTodayCost', 'getCategories'));
     }
 
 

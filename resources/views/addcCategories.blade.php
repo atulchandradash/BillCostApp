@@ -11,19 +11,10 @@
             @include('layout.menubar')
         </div>
 
-    </div>
-    <hr>
-    <div class="row justify-content-between align-items-center">
-        <div class="col-auto">
-            <h4>Today Cost</h4>
-        </div>
-        <div class="col-auto">
-            <span id="current-fullday" style="color: #a2a2a2">{{$now->format('Y-m-d')}}</span>
-            <span id="current-day" style="color: #a2a2a2">{{ $now->format('l') }}</span>
-        </div>
         <div>
-            <h5>{{$getTodayCost}} &#xA5</h5>
+            <span  style="color: #a2a2a2">Today Cost: {{$getTodayCost}}</span>
         </div>
+
     </div>
     <hr>
 
@@ -33,7 +24,25 @@
         </div>
     @endif
 
-     @foreach ($getCategories as $data)
+     <div class="row mt-3">
+        <h3>Add Categories</h3>
+        <br>
+        <br>
+            <div class="col">
+                <form method="POST" action="{{route('addCategoriePost')}}" >
+                    @csrf
+                    <div class="input-group mb-3">
+                        <label style="color: #a2a2a2" class="input-group-text" for="current-fullday">Name</label>
+                        <input name="categorie_name" type="name" class="form-control" id="current-fullday" name="shortDescription">
+                    </div>
+                    <input type="hidden" name="userid" value="{{$user->id}}">
+                    <button type="submit" class="btn btn-success">Add Categories</button>
+                </form>
+            </div>
+        </div>
+
+    <hr>
+    @foreach ($getCategories as $data)
     <div style="border:2px solid black; margin: 1% 0;padding:5px" class="row justify-content-between align-items-center ">
         <div class="col-md-auto ">
             <div class="d-flex justify-content-between align-items-center"> 
@@ -51,23 +60,6 @@
         </div>
     </div>
     @endforeach
-
-     <div class="row mt-5">
-        <h3>Add Categories</h3>
-        <br>
-        <br>
-            <div class="col">
-                <form method="POST" action="{{route('addCategoriePost')}}" >
-                    @csrf
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="current-fullday">Name</label>
-                        <input name="categorie_name" type="name" class="form-control" id="current-fullday" name="shortDescription">
-                    </div>
-                    <input type="hidden" name="userid" value="{{$user->id}}">
-                    <button type="submit" class="btn btn-success">Add Categories</button>
-                </form>
-            </div>
-        </div>
 
    
      {{-- tryagain3--}}
