@@ -10,19 +10,8 @@
             </div>
             @include('layout.menubar')
         </div>
-
-    </div>
-    <hr>
-    <div class="row justify-content-between align-items-center">
-        <div class="col-auto">
-            <h4>Today Cost</h4>
-        </div>
-        <div class="col-auto">
-            <span id="current-fullday" style="color: #a2a2a2">{{$now->format('Y-m-d')}}</span>
-            <span id="current-day" style="color: #a2a2a2">{{ $now->format('l') }}</span>
-        </div>
         <div>
-            <h5>{{$getTodayCost}} &#xA5</h5>
+            <span  style="color: #a2a2a2">Today Cost: {{$getTodayCost}}</span>
         </div>
     </div>
     <hr>

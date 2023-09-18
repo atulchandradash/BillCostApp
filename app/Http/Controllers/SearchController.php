@@ -24,7 +24,7 @@ class SearchController extends Controller
         $getTodayCost = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->sum('cost');
         // ---------
 
-        return view('search', compact('user', 'now', 'getTodayCost'));
+        return view('search', compact('user', 'getTodayCost'));
     }
 
     public function searchResult(Request $request)
