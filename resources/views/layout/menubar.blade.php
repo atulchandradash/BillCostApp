@@ -6,6 +6,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <li><a class="dropdown-item" href="{{route('welcome')}}">Home</a></li>
                         <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{route('addCostPage')}}">Add Cost</a></li>
                         <li><a class="dropdown-item" href="{{route('search')}}">Search</a></li>
                         <li><a class="dropdown-item" href="{{route('addcCategories')}}">Add Categories</a></li>
                         <li><hr class="dropdown-divider"></li>

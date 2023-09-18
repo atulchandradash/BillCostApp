@@ -33,7 +33,18 @@
         </div>
     @endif
 
-    @foreach ($getTodayCostGet as $data)
+    <section>
+        <div class="row justify-content-between">
+            <div style="background-color:black;color:white;padding:3% " class="col-md-5 mb-2">
+                Tommorow Cost is : {{$tommorowDateCost}}  &#xA5
+            </div>
+            <div style="background-color:black;color:white;padding:3%" class="col-md-5 mb-2">
+                This Month Cost is : {{$thisMonthCost}}  &#xA5
+            </div>
+        </div>
+    </section>
+
+    {{-- @foreach ($getTodayCostGet as $data)
     <div style="border:2px solid black; margin: 1% 0;padding:5px" class="row justify-content-between align-items-center">
         <div class="col-md-auto ">
             <div class="d-flex justify-content-between align-items-center"> 
@@ -52,36 +63,9 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @endforeach --}}
 
-    <div class="row mt-5">
-        <h3>Add Cost</h3>
-        <br>
-        <br>
-            <div class="col">
-                <form method="POST" action="{{route('addCost')}}" >
-                    @csrf
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="selectOption">Cost Categories</label>
-                        <select class="form-control" id="selectOption" name="categories_id">
-                            @foreach( $categoriesShow as $optionValue)
-                                <option  style="color: #a2a2a2" value="{{ $optionValue->id }}">{{ $optionValue->categorie_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="current-fullday">Date</label>
-                        <input name="date" type="date" class="form-control" id="current-fullday" name="shortDescription" value="{{ date('Y-m-d') }}">
-                    </div>
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="totalCost">Cost</label>
-                        <input name="cost" type="number" class="form-control" id="totalCost" name="totalCost">
-                    </div>
-                    <input type="hidden" name="userid" value="{{$user->id}}">
-                    <button type="submit" class="btn btn-success">Add Cost</button>
-                </form>
-            </div>
-        </div>
+ 
 
      {{-- tryagain3--}}
 

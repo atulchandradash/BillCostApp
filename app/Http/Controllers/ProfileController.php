@@ -25,7 +25,7 @@ class ProfileController extends Controller
         $getTodayCost = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->sum('cost');
         // ---------
 
-        return view('profile', compact('user', 'now', 'getTodayCost'));
+        return view('profile', compact('user', 'getTodayCost'));
     }
 
 

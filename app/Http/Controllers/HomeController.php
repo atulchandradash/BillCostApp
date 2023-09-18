@@ -28,7 +28,19 @@ class HomeController extends Controller
         $getTodayCostGet = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->get();
         // ---------
 
+        //tommorowdayCost
+        $tommorowDate = $now->subDay()->format('Y-m-d');
+        $tommorowDateCost = Cost::where('userid', $user->id)->where('date', $tommorowDate)->sum('cost');
+        // ----
+
+        //thisMonthCost
+        $thisMonth = $now->format('m');
+        $thisMonthCost = Cost::where('userid', $user->id)->WhereMonth('created_at', $thisMonth)->sum('cost');
+        // ----
+
         $categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $user->id)->get();
+
+
 
 
         return view(
@@ -39,7 +51,9 @@ class HomeController extends Controller
                 'now',
                 'getTodayCost',
                 'getTodayCostGet',
-                'categoriesShow'
+                'categoriesShow',
+                'tommorowDateCost',
+                'thisMonthCost'
             )
         );
     }
@@ -55,7 +69,7 @@ class HomeController extends Controller
         ]);
 
         if (Cost::create($data)) {
-            return redirect()->route('welcome');
+            return redirect()->back();
         } else {
             return redirect()->back()->with("error", "Having Some issues!!");
         }
@@ -88,7 +102,7 @@ class HomeController extends Controller
 
         $getCategories = Categorie::where('userid', $user->id)->get();
 
-        return view('addcCategories', compact('user', 'now', 'getTodayCost', 'getCategories'));
+        return view('addcCategories', compact('user', 'getTodayCost', 'getCategories'));
     }
 
 
@@ -115,5 +129,32 @@ class HomeController extends Controller
             $data->delete();
             return redirect()->route('addcCategories')->with('success', "Categories Delete Succesfully");
         }
+    }
+
+    public function addCostPage()
+    {
+        $user = Auth::user();
+
+        // getTime
+        date_default_timezone_set('Asia/Shanghai');
+        $timezone = date_default_timezone_get();
+        $now = Carbon::now('Asia/Shanghai');
+        // --------
+
+        // TdoayCostGet()
+        $getTodayCost = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->sum('cost');
+        // ---------
+
+        // categoriesShow()
+        $categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $user->id)->get();
+        // ------
+
+        //get Last Record
+        $costRecord = Cost::Where('userid', $user->id)->latest()->limit(5)->get();
+        //-----
+
+
+
+        return view('addCost', compact('user', 'getTodayCost', 'categoriesShow', 'costRecord'));
     }
 }

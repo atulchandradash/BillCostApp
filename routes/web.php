@@ -33,6 +33,7 @@ Route::group(['middleware' => 'UserAuth'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
     // addCostSection
+    Route::get('/addCost', [HomeController::class, 'addCostPage'])->name('addCostPage');
     Route::post('/addCost', [HomeController::class, 'addCost'])->name('addCost');
     Route::delete('/deleteCost/{id}', [HomeController::class, 'deleteCost'])->name('deleteCost');
     // --------    
