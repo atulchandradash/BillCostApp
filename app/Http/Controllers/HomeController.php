@@ -28,7 +28,19 @@ class HomeController extends Controller
         $getTodayCostGet = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->get();
         // ---------
 
+        //tommorowdayCost
+        $tommorowDate = $now->subDay()->format('Y-m-d');
+        $tommorowDateCost = Cost::where('userid', $user->id)->where('date', $tommorowDate)->sum('cost');
+        // ----
+
+        //thisMonthCost
+        $thisMonth = $now->format('m');
+        $thisMonthCost = Cost::where('userid', $user->id)->WhereMonth('created_at', $thisMonth)->sum('cost');
+        // ----
+
         $categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $user->id)->get();
+
+
 
 
         return view(
@@ -39,7 +51,9 @@ class HomeController extends Controller
                 'now',
                 'getTodayCost',
                 'getTodayCostGet',
-                'categoriesShow'
+                'categoriesShow',
+                'tommorowDateCost',
+                'thisMonthCost'
             )
         );
     }

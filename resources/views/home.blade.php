@@ -33,7 +33,18 @@
         </div>
     @endif
 
-    @foreach ($getTodayCostGet as $data)
+    <section>
+        <div class="row justify-content-between">
+            <div style="background-color:black;color:white;padding:3% " class="col-md-5 mb-2">
+                Tommorow Cost is : {{$tommorowDateCost}}  &#xA5
+            </div>
+            <div style="background-color:black;color:white;padding:3%" class="col-md-5 mb-2">
+                This Month Cost is : {{$thisMonthCost}}  &#xA5
+            </div>
+        </div>
+    </section>
+
+    {{-- @foreach ($getTodayCostGet as $data)
     <div style="border:2px solid black; margin: 1% 0;padding:5px" class="row justify-content-between align-items-center">
         <div class="col-md-auto ">
             <div class="d-flex justify-content-between align-items-center"> 
@@ -52,9 +63,9 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @endforeach --}}
 
-    <div class="row mt-5">
+    {{-- <div class="row mt-5">
         <h3>Add Cost</h3>
         <br>
         <br>
@@ -81,7 +92,7 @@
                     <button type="submit" class="btn btn-success">Add Cost</button>
                 </form>
             </div>
-        </div>
+        </div> --}}
 
      {{-- tryagain3--}}
 
