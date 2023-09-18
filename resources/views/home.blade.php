@@ -65,34 +65,7 @@
     </div>
     @endforeach --}}
 
-    {{-- <div class="row mt-5">
-        <h3>Add Cost</h3>
-        <br>
-        <br>
-            <div class="col">
-                <form method="POST" action="{{route('addCost')}}" >
-                    @csrf
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="selectOption">Cost Categories</label>
-                        <select class="form-control" id="selectOption" name="categories_id">
-                            @foreach( $categoriesShow as $optionValue)
-                                <option  style="color: #a2a2a2" value="{{ $optionValue->id }}">{{ $optionValue->categorie_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="current-fullday">Date</label>
-                        <input name="date" type="date" class="form-control" id="current-fullday" name="shortDescription" value="{{ date('Y-m-d') }}">
-                    </div>
-                    <div class="input-group mb-3">
-                        <label style="color: #a2a2a2" class="input-group-text" for="totalCost">Cost</label>
-                        <input name="cost" type="number" class="form-control" id="totalCost" name="totalCost">
-                    </div>
-                    <input type="hidden" name="userid" value="{{$user->id}}">
-                    <button type="submit" class="btn btn-success">Add Cost</button>
-                </form>
-            </div>
-        </div> --}}
+ 
 
      {{-- tryagain3--}}
 

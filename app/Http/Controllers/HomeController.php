@@ -69,7 +69,7 @@ class HomeController extends Controller
         ]);
 
         if (Cost::create($data)) {
-            return redirect()->route('welcome');
+            return redirect()->back();
         } else {
             return redirect()->back()->with("error", "Having Some issues!!");
         }
@@ -129,5 +129,32 @@ class HomeController extends Controller
             $data->delete();
             return redirect()->route('addcCategories')->with('success', "Categories Delete Succesfully");
         }
+    }
+
+    public function addCostPage()
+    {
+        $user = Auth::user();
+
+        // getTime
+        date_default_timezone_set('Asia/Shanghai');
+        $timezone = date_default_timezone_get();
+        $now = Carbon::now('Asia/Shanghai');
+        // --------
+
+        // TdoayCostGet()
+        $getTodayCost = Cost::where('userid', $user->id)->where('date', $now->format('Y-m-d'))->sum('cost');
+        // ---------
+
+        // categoriesShow()
+        $categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $user->id)->get();
+        // ------
+
+        //get Last Record
+        $costRecord = Cost::Where('userid', $user->id)->latest()->limit(5)->get();
+        //-----
+
+
+
+        return view('addCost', compact('user', 'getTodayCost', 'categoriesShow', 'costRecord'));
     }
 }
