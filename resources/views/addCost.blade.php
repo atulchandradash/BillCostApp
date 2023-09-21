@@ -51,7 +51,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <label style="color: #a2a2a2" class="input-group-text" for="totalCost">Cost</label>
-                        <input name="cost" type="number" class="form-control" id="totalCost" name="totalCost">
+                        <input name="cost" type="float" class="form-control" id="totalCost" name="totalCost">
                     </div>
                     <input type="hidden" name="userid" value="{{$user->id}}">
                     <button type="submit" class="btn btn-success">Add Cost</button>
