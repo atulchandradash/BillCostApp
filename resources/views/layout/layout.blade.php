@@ -17,6 +17,7 @@
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
         }
     </style>
+    @livewireStyles
   </head>
   <body style="background-color: #23c08d;">
     <div class="container mt-5 ">
@@ -25,7 +26,19 @@
       </div>
     </div>
 
+      @livewireScripts  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      window.Livewire.on('successAlert', message => {
+          Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: message,
+          });
+      });
+    </script>
   </body>
 </html>
