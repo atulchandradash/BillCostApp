@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Categorie;
+use App\Models\Cost;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -22,16 +24,19 @@ class AddCategories extends Component
     public $editid;
 
 
-
-
-
     public function mount()
     {
         $this->user = Auth::user();
 
-        // categoriesShow()
-        $this->categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $this->user->id)->get();
-        // ------
+        // getTime
+        date_default_timezone_set('Asia/Shanghai');
+        $timezone = date_default_timezone_get();
+        $now = Carbon::now('Asia/Shanghai');
+        // --------
+
+        // TdoayCostGet()
+        $this->getTodayCost = Cost::where('userid', $this->user->id)->where('date', $now->format('Y-m-d'))->sum('cost');
+        // ---------
 
         $this->getCate();
     }
@@ -50,6 +55,8 @@ class AddCategories extends Component
 
 
         Categorie::create($data);
+
+        $this->dispatch('successAlert', "Add Categories Done");
 
         $this->getCate();
 
@@ -81,6 +88,8 @@ class AddCategories extends Component
 
         $data->categorie_name = $this->editCategorie_name;
         $data->save();
+
+        $this->dispatch('successAlert', "Edit Categories Done");
 
         $this->editCategorie_name = '';
         $this->editid = '';
