@@ -34,7 +34,7 @@ Route::group(['middleware' => 'UserAuth'], function () {
 
     // addCostSection
     Route::get('/addCost', [HomeController::class, 'addCostPage'])->name('addCostPage');
-    Route::post('/addCost', [HomeController::class, 'addCost'])->name('addCost');
+    // Route::post('/addCost', [HomeController::class, 'addCost'])->name('addCost');
     Route::delete('/deleteCost/{id}', [HomeController::class, 'deleteCost'])->name('deleteCost');
     // --------    
 
