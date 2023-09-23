@@ -10,15 +10,7 @@ use Livewire\Component;
 class Home extends Component
 {
 
-    public $user;
-
-    public $now;
-
-    public $getTodayCost;
-
-    public $tommorowDateCost;
-
-    public $thisMonthCost;
+    public $user, $now, $getTodayCost, $tommorowDateCost, $thisMonthCost;
 
 
     public function mount()
