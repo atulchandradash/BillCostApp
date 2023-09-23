@@ -15,6 +15,9 @@ class AddCost extends Component
     //all the input Fields
     public $cost, $categories_id = '1', $date, $userid;
 
+    //all the Edit input Fields
+    public $cost_id, $edit_cost, $edit_categories_id = '1', $edit_date;
+
     public function addCost()
     {
         $this->validate([
@@ -39,6 +42,54 @@ class AddCost extends Component
         $this->cost = '';
     }
 
+    public function openModal($id)
+    {
+        $data = Cost::where('userid', $this->userid)->Where('id', $id)->First();
+
+        $this->edit_categories_id = $data->categories_id;
+        $this->edit_date = $data->date;
+        $this->edit_cost = $data->cost;
+
+        $this->cost_id = $data->id;
+
+
+    }
+
+
+    public function editCost()
+    {
+        $this->validate([
+            'edit_categories_id' => 'required',
+            'edit_date' => 'required',
+            'edit_cost' => 'required|numeric|between:1,100000'
+        ]);
+
+        $data = Cost::where('userid', $this->userid)->Where('id', $this->cost_id)->First();
+
+        // dd($data);
+
+        $data->userid = $this->userid;
+        $data->categories_id = $this->edit_categories_id;
+        $data->date = $this->edit_date;
+        $data->cost = $this->edit_cost;
+
+        $data->save();
+
+        $this->dispatch('successAlert', 'Cost Edited Successfully!');
+
+        $this->editClose();
+
+    }
+
+    public function editClose()
+    {
+        $this->cost_id = '';
+        $this->edit_categories_id = '';
+        $this->edit_date = '';
+        $this->edit_cost = '';
+
+    }
+
     public function deleteCost($id)
     {
         if (isset($id)) {
@@ -61,8 +112,11 @@ class AddCost extends Component
         $user = Auth::user();
         //set the user id on the input fileds
         $this->userid = $user->id;
+
         //set the date in input fileds
         $this->date = date('Y-m-d');
+
+
         // show the categories in form
         $categoriesShow = Categorie::where('userid', 'ALL')->orWhere('userid', $user->id)->get();
         // ------
